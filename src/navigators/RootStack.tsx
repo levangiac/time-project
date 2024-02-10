@@ -2,11 +2,10 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 
 import React from 'react';
 import { ROOT_ROUTE_KEY } from './RouterKey';
-import Splash from '~screens/splash';
+import OnboardingScreen from '~screens/onboarding';
 
 export type RootStackScreensParams = {
-  Splash: undefined;
-  // BottomTab: undefined | NavigatorScreenParams<BottomTabRoutes>;
+  OnboardingScreen: undefined;
   SignIn: undefined;
   SignUp: { mobile?: string };
 };
@@ -25,7 +24,7 @@ const RootStack = () => (
       headerShown: false,
     }}
   >
-    <Screen name={ROOT_ROUTE_KEY.Splash} component={Splash} />
+    <Screen name={ROOT_ROUTE_KEY.OnboardingScreen} component={OnboardingScreen} />
   </Navigator>
 );
 

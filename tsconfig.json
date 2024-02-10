@@ -1,27 +1,27 @@
 {
-  "extends": "@react-native/typescript-config/tsconfig.json",
+  "extends": "@tsconfig/react-native/tsconfig.json",
   "compilerOptions": {
-    "target": "esnext",
-    "module": "node16",
-    "lib": ["es2020"],
-    "allowJs": true,
+    // "target": "esnext",
+    "module": "Node16",
+    // "lib": ["es2019"],
+    // "allowJs": true,
     // "checkJs": true, */
-    "jsx": "react-native",
+    // "jsx": "react-native",
     // "declaration": true,
     // "sourceMap": true,
     // "outFile": "./",
     // "outDir": "./",
     // "rootDir": "./",
     // "removeComments": true,
-    "noEmit": true,
+    // "noEmit": true,
     // "incremental": true,
     // "importHelpers": true,
     // "downlevelIteration": true,
-    "isolatedModules": true,
+    // "isolatedModules": true,
 
     /* Strict Type-Checking Options */
-    "strict": true /* Enable all strict type-checking options. */,
-    "noImplicitAny": true,
+    // "strict": true /* Enable all strict type-checking options. */,
+    // "noImplicitAny": true,
     // "strictNullChecks": true,
     // "strictFunctionTypes": true,
     // "strictPropertyInitialization": true,
@@ -35,7 +35,7 @@
     // "noFallthroughCasesInSwitch": true,
 
     /* Module Resolution Options */
-    "moduleResolution": "node16",
+    "moduleResolution": "Node16",
     /* Absolute Import */
     "baseUrl": ".",
     "paths": {
@@ -59,10 +59,10 @@
     // "rootDirs": [],
     // "typeRoots": [],
     // "types": [],
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
+    // "allowSyntheticDefaultImports": true,
+    // "esModuleInterop": true,
     // "preserveSymlinks": true,
-    "skipLibCheck": true
+    // "skipLibCheck": true
 
     /* Source Map Options */
     // "sourceRoot": "./",

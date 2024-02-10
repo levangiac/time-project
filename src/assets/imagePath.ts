@@ -91,6 +91,9 @@ export const IMAGE = {
 export const JSON = {
   sound_wave: require(`${jsons}/sound-wave.json`),
   loading_spiner: require(`${jsons}/loading_spiner.json`),
+  lottie1: require(`${jsons}/Lottie1.json`),
+  lottie2: require(`${jsons}/Lottie2.json`),
+  lottie3: require(`${jsons}/Lottie3.json`),
 };
 
 export type IMAGE_PARAMS = typeof IMAGE;
