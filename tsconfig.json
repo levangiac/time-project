@@ -1,27 +1,9 @@
-// {
-//   "extends": "@react-native/typescript-config/tsconfig.json", 
-//   "compilerOptions": {
-//     "baseUrl": ".",   
-//     "paths": {
-//        "src/*": ["./src/*"],
-//        "~components": ["./src/components"], 
-//        "~screens": ["./src/screens"],
-//        "~stores": ["./src/stores"],
-//        "~styles": ["./src/styles"],
-//        "~hooks": ["./src/hooks"],
-//        "~services": ["./src/services"],
-//        "~theme/*": ["./src/theme"],
-//        "~utils": ["./src/utils"], 
-//     }
-//   },
-// }
-
 {
   "extends": "@react-native/typescript-config/tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
-    "lib": ["es2019"],
+    "module": "node16",
+    "lib": ["es2020"],
     "allowJs": true,
     // "checkJs": true, */
     "jsx": "react-native",
@@ -53,7 +35,7 @@
     // "noFallthroughCasesInSwitch": true,
 
     /* Module Resolution Options */
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     /* Absolute Import */
     "baseUrl": ".",
     "paths": {

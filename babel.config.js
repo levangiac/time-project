@@ -47,6 +47,7 @@
 //   ],
 // };
 const moduleResolver = [
+  require.resolve('babel-plugin-module-resolver'),
   {
     root: ['./src/'],
     alias: {
@@ -91,10 +92,17 @@ const moduleResolver = [
 
 module.exports = {
   presets: ['module:@react-native/babel-preset'],
-  plugins: [
-    moduleResolver,
-    'transform-remove-console',
-    'react-native-paper/babel',
-    'react-native-reanimated/plugin',
-  ],
+  env: {
+    production: {
+      plugins: [
+        moduleResolver,
+        'transform-remove-console',
+        'react-native-paper/babel',
+        'react-native-reanimated/plugin',
+      ],
+    },
+    development: {
+      plugins: [moduleResolver, 'react-native-reanimated/plugin'],
+    },
+  },
 };

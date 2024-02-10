@@ -5,26 +5,19 @@ import { NavigationContainer, NavigationState } from '@react-navigation/native';
 
 import React, { useCallback, useEffect } from 'react';
 import { LogBox, StatusBar } from 'react-native';
-import ReactNativeBlobUtil from 'react-native-blob-util';
+import BootSplash from 'react-native-bootsplash';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
+import { PersistGate } from 'redux-persist/integration/react';
 import {
   SafeAreaProvider,
   initialWindowMetrics,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { Provider, useDispatch } from 'react-redux';
-import FilesystemStorage from 'redux-persist-filesystem-storage';
-import { PersistGate } from 'redux-persist/integration/react';
+
 import store, { persistor } from '~store/index';
 // import { LocalizationProvider } from '~theme/localization';
 
-FilesystemStorage.config({
-  storagePath: `${ReactNativeBlobUtil.fs.dirs.DocumentDir}/persistStore`,
-  encoding: 'utf8',
-  toFileName: (name: string) => name.split(':').join('-'),
-  fromFileName: (name: string) => name.split('-').join(':'),
-});
 const Main = () => {
   function screenTracking(state: NavigationState | undefined): void {
     if (state) {
@@ -55,7 +48,7 @@ const Main = () => {
 const ReduxStoreWrapper = () => {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>
+      <PersistGate loading={null} persistor={persistor}>
         <Main />
       </PersistGate>
     </Provider>
@@ -63,7 +56,7 @@ const ReduxStoreWrapper = () => {
 };
 const App = () => (
   <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-    <Main />
+    <ReduxStoreWrapper />
   </SafeAreaProvider>
 );
 export default App;
