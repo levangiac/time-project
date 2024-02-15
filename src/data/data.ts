@@ -14,7 +14,7 @@ const data: OnboardingData[] = [
   {
     id: 1,
     animation: JSON.aAlarmClock,
-    text: 'Lorem Ipsum dolor sit amet',
+    text: 'Hello. TimeMaster will remind you in the upcoming time.',
     textColor: pColor.white,
     backgroundColor: pColor.pinkChart,
   },

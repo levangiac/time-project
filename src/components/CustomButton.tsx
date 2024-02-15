@@ -8,11 +8,11 @@ import Animated, {
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
-import { useNavigation } from '@react-navigation/native';
+import { StackActions, useNavigation } from '@react-navigation/native';
 import { OnboardingData } from '~/data/data';
 import { ICON } from '~/assets/imagePath';
 import { pColor } from '~styles/colors';
-import { WIDTH_SCALE } from '~constants/index';
+import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
 
 type Props = {
   dataLength: number;
@@ -73,7 +73,7 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
         if (flatListIndex.value < dataLength - 1) {
           flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
         } else {
-          // navigation.navigate('Home');
+          navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
         }
       }}
     >

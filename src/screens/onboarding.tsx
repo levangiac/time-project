@@ -13,9 +13,6 @@ import { RootStackScreenProps } from '~navigators/RootStack';
 import BootSplash from 'react-native-bootsplash';
 const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
   useEffect(() => {
-    const init = async () => {
-      // …do multiple sync or async tasks
-    };
     BootSplash.hide({ fade: true });
   }, []);
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();

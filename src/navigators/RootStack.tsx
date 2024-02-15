@@ -3,9 +3,11 @@ import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navig
 import React from 'react';
 import { ROOT_ROUTE_KEY } from './RouterKey';
 import OnboardingScreen from '~screens/onboarding';
+import Home from '~screens/home';
 
 export type RootStackScreensParams = {
   OnboardingScreen: undefined;
+  Home: undefined;
   SignIn: undefined;
   SignUp: { mobile?: string };
 };
@@ -25,6 +27,7 @@ const RootStack = () => (
     }}
   >
     <Screen name={ROOT_ROUTE_KEY.OnboardingScreen} component={OnboardingScreen} />
+    <Screen name={ROOT_ROUTE_KEY.Home} component={Home} />
   </Navigator>
 );
 
