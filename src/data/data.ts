@@ -1,5 +1,6 @@
 import { AnimationObject } from 'lottie-react-native';
 import { JSON } from '~/assets/imagePath';
+import { pColor } from '~styles/colors';
 
 export interface OnboardingData {
   id: number;
@@ -12,24 +13,24 @@ export interface OnboardingData {
 const data: OnboardingData[] = [
   {
     id: 1,
-    animation: JSON.lottie1,
+    animation: JSON.aAlarmClock,
     text: 'Lorem Ipsum dolor sit amet',
-    textColor: '#005b4f',
-    backgroundColor: '#ffa3ce',
+    textColor: pColor.white,
+    backgroundColor: pColor.pinkChart,
   },
   {
     id: 2,
-    animation: JSON.lottie2,
-    text: 'Lorem Ipsum dolor sit amet',
-    textColor: '#1e2169',
-    backgroundColor: '#bae4fd',
+    animation: JSON.aNote,
+    text: 'Important Events',
+    textColor: pColor.darkBlue,
+    backgroundColor: pColor.grayDisplay,
   },
   {
     id: 3,
-    animation: JSON.lottie3,
-    text: 'Lorem Ipsum dolor sit amet',
-    textColor: '#F15937',
-    backgroundColor: '#faeb8a',
+    animation: JSON.aGift,
+    text: 'And More Surprises ...',
+    textColor: pColor.orange2,
+    backgroundColor: pColor.greenNice,
   },
 ];
 

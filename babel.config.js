@@ -1,5 +1,5 @@
 const moduleResolver = [
-  'module-resolver',
+  require.resolve('babel-plugin-module-resolver'),
   {
     root: ['./src/'],
     alias: {

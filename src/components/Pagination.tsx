@@ -18,8 +18,6 @@ const Pagination = ({ data, x }: Props) => {
   );
 };
 
-export default Pagination;
-
 const styles = StyleSheet.create({
   paginationContainer: {
     flexDirection: 'row',
@@ -28,3 +26,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+export default Pagination;

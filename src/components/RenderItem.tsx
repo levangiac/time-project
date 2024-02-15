@@ -1,13 +1,9 @@
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import React from 'react';
-import Animated, {
-  Extrapolate,
-  SharedValue,
-  interpolate,
-  useAnimatedStyle,
-} from 'react-native-reanimated';
+import Animated, { SharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
 import { OnboardingData } from '../data/data';
 import LottieView from 'lottie-react-native';
+import { HEIGHT_SCALE, WIDTH_SCALE } from '~constants/index';
 
 type Props = {
   index: number;
@@ -73,14 +69,12 @@ const RenderItem = ({ index, x, item }: Props) => {
   );
 };
 
-export default RenderItem;
-
 const styles = StyleSheet.create({
   itemContainer: {
     flex: 1,
     justifyContent: 'space-around',
     alignItems: 'center',
-    marginBottom: 120,
+    marginBottom: 120 * HEIGHT_SCALE,
   },
   itemText: {
     textAlign: 'center',
@@ -95,3 +89,4 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 });
+export default RenderItem;

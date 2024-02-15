@@ -11,6 +11,8 @@ import Animated, {
 import { useNavigation } from '@react-navigation/native';
 import { OnboardingData } from '~/data/data';
 import { ICON } from '~/assets/imagePath';
+import { pColor } from '~styles/colors';
+import { WIDTH_SCALE } from '~constants/index';
 
 type Props = {
   dataLength: number;
@@ -57,7 +59,7 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
     const backgroundColor = interpolateColor(
       x.value,
       [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#F15937']
+      [pColor.white, pColor.buttonBlue, pColor.orange2]
     );
 
     return {
@@ -76,18 +78,18 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
       }}
     >
       <Animated.View style={[styles.container, buttonAnimationStyle, animatedColor]}>
-        <Animated.Text style={[styles.textButton, textAnimationStyle]}>Get Started</Animated.Text>
+        <Animated.Text style={[styles.textButton, textAnimationStyle]}>
+          {'Get Started'}
+        </Animated.Text>
         <Animated.Image source={ICON.arrow_right} style={[styles.arrow, arrowAnimationStyle]} />
       </Animated.View>
     </TouchableWithoutFeedback>
   );
 };
 
-export default CustomButton;
-
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#1e2169',
+    backgroundColor: pColor.white,
     padding: 10,
     borderRadius: 100,
     justifyContent: 'center',
@@ -97,5 +99,11 @@ const styles = StyleSheet.create({
   arrow: {
     position: 'absolute',
   },
-  textButton: { color: 'white', fontSize: 16, position: 'absolute' },
+  textButton: {
+    color: 'white',
+    fontSize: 16,
+    position: 'absolute',
+    fontWeight: 'bold',
+  },
 });
+export default CustomButton;

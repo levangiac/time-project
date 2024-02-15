@@ -16,25 +16,21 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
     const init = async () => {
       // …do multiple sync or async tasks
     };
-    init().finally(async () => {
-      await BootSplash.hide({ fade: true });
-      console.log('BootSplash has been hidden successfully');
-    });
+    BootSplash.hide({ fade: true });
   }, []);
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();
   const x = useSharedValue(0);
-  console.log('🚀 ~ OnboardingScreen ~ x:', x);
   const flatListIndex = useSharedValue(0);
 
   const onViewableItemsChanged = ({ viewableItems }: { viewableItems: ViewToken[] }) => {
-    if (viewableItems[0].index !== null) {
-      flatListIndex.value = viewableItems[0].index;
+    if (viewableItems[0]?.index !== null) {
+      flatListIndex.value = viewableItems[0]?.index;
     }
   };
 
   const onScroll = useAnimatedScrollHandler({
     onScroll: (event) => {
-      x.value = event.contentOffset.x;
+      x.value = event?.contentOffset?.x;
     },
   });
 
@@ -72,8 +68,6 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
   );
 };
 
-export default OnboardingScreen;
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -91,3 +85,4 @@ const styles = StyleSheet.create({
     right: 0,
   },
 });
+export default OnboardingScreen;

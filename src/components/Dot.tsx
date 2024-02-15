@@ -7,6 +7,7 @@ import Animated, {
   interpolateColor,
   useAnimatedStyle,
 } from 'react-native-reanimated';
+import { pColor } from '~styles/colors';
 
 type Props = {
   index: number;
@@ -40,7 +41,7 @@ const Dot = ({ index, x }: Props) => {
     const backgroundColor = interpolateColor(
       x.value,
       [0, SCREEN_WIDTH, 2 * SCREEN_WIDTH],
-      ['#005b4f', '#1e2169', '#F15937']
+      [pColor.white, pColor.buttonBlue, pColor.orange2]
     );
 
     return {
@@ -51,8 +52,6 @@ const Dot = ({ index, x }: Props) => {
   return <Animated.View style={[styles.dots, animatedDotStyle, animatedColor]} />;
 };
 
-export default Dot;
-
 const styles = StyleSheet.create({
   dots: {
     height: 10,
@@ -60,3 +59,4 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 });
+export default Dot;
