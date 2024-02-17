@@ -5,7 +5,7 @@ import { NavigationContainer, NavigationState } from '@react-navigation/native';
 
 import React, { useCallback, useEffect } from 'react';
 import { LogBox, StatusBar } from 'react-native';
-import BootSplash from 'react-native-bootsplash';
+
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { PersistGate } from 'redux-persist/integration/react';
 import {
@@ -14,9 +14,8 @@ import {
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
 import { Provider, useDispatch } from 'react-redux';
-
 import store, { persistor } from '~store/index';
-// import { LocalizationProvider } from '~theme/localization';
+import { LocalizationProvider } from '~theme/localization';
 
 const Main = () => {
   function screenTracking(state: NavigationState | undefined): void {
@@ -30,7 +29,6 @@ const Main = () => {
   }
 
   const insets = useSafeAreaInsets();
-  LogBox.ignoreLogs(['Non-serializable values were found in the navigation state']);
   const dispatch = useDispatch();
 
   return (
@@ -56,7 +54,9 @@ const ReduxStoreWrapper = () => {
 };
 const App = () => (
   <SafeAreaProvider initialMetrics={initialWindowMetrics}>
-    <ReduxStoreWrapper />
+    <LocalizationProvider>
+      <ReduxStoreWrapper />
+    </LocalizationProvider>
   </SafeAreaProvider>
 );
 export default App;

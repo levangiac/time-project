@@ -44,6 +44,7 @@ export const ICON = {
   event: require(`${icons}/event.png`),
   event_2: require(`${icons}/event_2.png`),
   volume: require(`${icons}/volume.png`),
+  setting: require(`${icons}/setting.png`),
   //   notice:require(`${icons}/notice.png`),
   //   buy_icon: require(`${icons}/buyicon.jpg`),
   //   clear_icon: require(`${icons}/clear_icon.png`),

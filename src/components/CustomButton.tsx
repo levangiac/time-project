@@ -13,6 +13,8 @@ import { OnboardingData } from '~/data/data';
 import { ICON } from '~/assets/imagePath';
 import { pColor } from '~styles/colors';
 import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
+import { useLocalizationContext } from '~theme/localization';
+import { updateSeenOnBoarding } from '~utils/asyncStorage';
 
 type Props = {
   dataLength: number;
@@ -23,6 +25,7 @@ type Props = {
 
 const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
   const { width: SCREEN_WIDTH } = useWindowDimensions();
+  const { strings } = useLocalizationContext();
   const navigation = useNavigation();
 
   const buttonAnimationStyle = useAnimatedStyle(() => {
@@ -73,13 +76,14 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
         if (flatListIndex.value < dataLength - 1) {
           flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
         } else {
+          updateSeenOnBoarding('true');
           navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
         }
       }}
     >
       <Animated.View style={[styles.container, buttonAnimationStyle, animatedColor]}>
         <Animated.Text style={[styles.textButton, textAnimationStyle]}>
-          {'Get Started'}
+          {strings.onboarding.getStarted}
         </Animated.Text>
         <Animated.Image source={ICON.arrow_right} style={[styles.arrow, arrowAnimationStyle]} />
       </Animated.View>

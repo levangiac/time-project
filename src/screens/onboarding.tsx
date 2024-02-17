@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList, ViewToken } from 'react-native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -11,10 +11,25 @@ import CustomButton from '~components/CustomButton';
 import RenderItem from '~components/RenderItem';
 import { RootStackScreenProps } from '~navigators/RootStack';
 import BootSplash from 'react-native-bootsplash';
+import { isSeenOnBoarding, updateSeenOnBoarding } from '~utils/asyncStorage';
+import { StackActions, useNavigation } from '@react-navigation/native';
+import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
+
 const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
+  const navigation = useNavigation();
+  useLayoutEffect(() => {
+    // updateSeenOnBoarding('false');
+    isSeenOnBoarding().then((isSeen) => {
+      if (isSeen !== 'false') {
+        navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
+        BootSplash.hide({ fade: true });
+      }
+    });
+  }, []);
   useEffect(() => {
     BootSplash.hide({ fade: true });
   }, []);
+
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();
   const x = useSharedValue(0);
   const flatListIndex = useSharedValue(0);
@@ -40,7 +55,7 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
         renderItem={({ item, index }) => {
           return <RenderItem item={item} index={index} x={x} />;
         }}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         scrollEventThrottle={16}
         horizontal={true}
         bounces={false}

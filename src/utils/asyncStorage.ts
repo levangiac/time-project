@@ -24,6 +24,21 @@ export const getAppTheme = async () => {
     console.log(e);
   }
 };
+export const isSeenOnBoarding = async () => {
+  try {
+    const isSeenOnBoarding = await AsyncStorage.getItem('@onBoarding:key');
+    return isSeenOnBoarding !== null ? isSeenOnBoarding : 'false';
+  } catch (e) {
+    console.log(e);
+  }
+};
+export const updateSeenOnBoarding = async (isSeen = 'false') => {
+  try {
+    await AsyncStorage.setItem('@onBoarding:key', isSeen);
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 export const updateAppTheme = async (ThemeColor = '') => {
   try {
