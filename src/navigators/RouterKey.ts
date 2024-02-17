@@ -10,5 +10,6 @@ export const ROOT_ROUTE_KEY = createEnum({
   SignUp: 'SignUp',
   IPADetail: 'IPADetail',
   Intro: 'Intro',
+  Games: 'Games',
   //! MainStack HERE
 });

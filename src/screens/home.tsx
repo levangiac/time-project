@@ -1,33 +1,84 @@
-import { View, Text, StyleSheet, Image } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
 import React from 'react';
 import { RootStackScreenProps } from '~navigators/RootStack';
 import { pColor } from '~styles/colors';
 import { ICON } from '~/assets/imagePath';
-import { WIDTH_SCALE } from '~constants/index';
+import { HEIGHT_SCALE, WIDTH_SCALE } from '~constants/index';
 import PTouchableOpacity from '~components/PTouchableOpacity';
+import MainContainer from '~components/MainContainer';
+import { useLocalizationContext } from '~theme/localization';
+import { pText } from '~styles/typography';
+import { StackActions, useNavigation } from '@react-navigation/native';
+import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
 
 const Home = (props: RootStackScreenProps<'Home'>) => {
+  const { strings } = useLocalizationContext();
+  const navigation = useNavigation();
   return (
-    <View style={styles.container}>
-      <PTouchableOpacity style={styles.iconSetting}>
-        <Image source={ICON.setting} style={styles.icon} />
-      </PTouchableOpacity>
-      <Text>{'Hi'}</Text>
-    </View>
+    <MainContainer style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.textHeader}>{strings.homeScreen.Alarms}</Text>
+        <View style={styles.buttons}>
+          <PTouchableOpacity
+            style={styles.iconAdd}
+            onPress={() => navigation.dispatch(StackActions.push(ROOT_ROUTE_KEY.Games))}
+          >
+            <Image source={ICON.add_plus} style={styles.iconAddStyle} />
+          </PTouchableOpacity>
+          <PTouchableOpacity style={styles.iconSetting}>
+            <Image source={ICON.setting} style={styles.iconSettingStyle} />
+          </PTouchableOpacity>
+        </View>
+      </View>
+      <FlatList data={[{}]} renderItem={({ item }) => <View></View>} style={styles.flatList} />
+    </MainContainer>
   );
 };
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: pColor.white,
+    backgroundColor: pColor.backgroundInput,
+  },
+
+  header: {
+    marginTop: 10 * HEIGHT_SCALE,
+    flexDirection: 'row',
+    alignContent: 'center',
+    paddingLeft: 15 * WIDTH_SCALE,
+    justifyContent: 'space-between',
+  },
+  textHeader: {
+    ...pText.BOLD_20,
+    fontWeight: '700',
+    alignSelf: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  buttons: {
+    flexDirection: 'row',
+  },
+  iconAdd: {
+    padding: 12 * WIDTH_SCALE,
+    alignSelf: 'center',
+  },
+  iconAddStyle: {
+    width: 14 * WIDTH_SCALE,
+    height: 14 * WIDTH_SCALE,
+    tintColor: pColor.black,
   },
   iconSetting: {
-    alignSelf: 'flex-end',
-    padding: 15 * WIDTH_SCALE,
+    padding: 12 * WIDTH_SCALE,
+    alignSelf: 'center',
   },
-  icon: {
-    width: 25 * WIDTH_SCALE,
-    height: 25 * WIDTH_SCALE,
+  iconSettingStyle: {
+    width: 16 * WIDTH_SCALE,
+    height: 16 * WIDTH_SCALE,
+    tintColor: pColor.black,
+  },
+  flatList: {
+    flex: 1,
+    borderTopLeftRadius: 20 * WIDTH_SCALE,
+    borderTopRightRadius: 20 * WIDTH_SCALE,
   },
 });
 export default Home;

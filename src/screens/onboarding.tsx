@@ -1,5 +1,5 @@
 import { StyleSheet, View, FlatList, ViewToken } from 'react-native';
-import React, { useEffect, useLayoutEffect } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import Animated, {
   useSharedValue,
   useAnimatedScrollHandler,
@@ -17,9 +17,11 @@ import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
 
 const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
   const navigation = useNavigation();
+  const [showOnBoarding, setShowOnBoarding] = useState<string | undefined>();
+
   useLayoutEffect(() => {
-    // updateSeenOnBoarding('false');
     isSeenOnBoarding().then((isSeen) => {
+      setShowOnBoarding(isSeen);
       if (isSeen !== 'false') {
         navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
         BootSplash.hide({ fade: true });
@@ -45,39 +47,41 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
       x.value = event?.contentOffset?.x;
     },
   });
-
-  return (
-    <View style={styles.container}>
-      <Animated.FlatList
-        ref={flatListRef}
-        onScroll={onScroll}
-        data={data}
-        renderItem={({ item, index }) => {
-          return <RenderItem item={item} index={index} x={x} />;
-        }}
-        keyExtractor={(item) => item.id.toString()}
-        scrollEventThrottle={16}
-        horizontal={true}
-        bounces={false}
-        pagingEnabled={true}
-        showsHorizontalScrollIndicator={false}
-        onViewableItemsChanged={onViewableItemsChanged}
-        viewabilityConfig={{
-          minimumViewTime: 300,
-          viewAreaCoveragePercentThreshold: 10,
-        }}
-      />
-      <View style={styles.bottomContainer}>
-        <Pagination data={data} x={x} />
-        <CustomButton
-          flatListRef={flatListRef}
-          flatListIndex={flatListIndex}
-          dataLength={data.length}
-          x={x}
+  if (showOnBoarding === 'false') {
+    return (
+      <View style={styles.container}>
+        <Animated.FlatList
+          ref={flatListRef}
+          onScroll={onScroll}
+          data={data}
+          renderItem={({ item, index }) => {
+            return <RenderItem item={item} index={index} x={x} />;
+          }}
+          keyExtractor={(item) => item.id.toString()}
+          scrollEventThrottle={16}
+          horizontal={true}
+          bounces={false}
+          pagingEnabled={true}
+          showsHorizontalScrollIndicator={false}
+          onViewableItemsChanged={onViewableItemsChanged}
+          viewabilityConfig={{
+            minimumViewTime: 300,
+            viewAreaCoveragePercentThreshold: 10,
+          }}
         />
+        <View style={styles.bottomContainer}>
+          <Pagination data={data} x={x} />
+          <CustomButton
+            flatListRef={flatListRef}
+            flatListIndex={flatListIndex}
+            dataLength={data.length}
+            x={x}
+          />
+        </View>
       </View>
-    </View>
-  );
+    );
+  }
+  return <View style={styles.container} />;
 };
 
 const styles = StyleSheet.create({

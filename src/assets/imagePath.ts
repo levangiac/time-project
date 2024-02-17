@@ -45,6 +45,7 @@ export const ICON = {
   event_2: require(`${icons}/event_2.png`),
   volume: require(`${icons}/volume.png`),
   setting: require(`${icons}/setting.png`),
+  add_plus: require(`${icons}/add.png`),
   //   notice:require(`${icons}/notice.png`),
   //   buy_icon: require(`${icons}/buyicon.jpg`),
   //   clear_icon: require(`${icons}/clear_icon.png`),
@@ -80,13 +81,13 @@ export const IMAGE = {
   //   rank_image:require(`${images}/rank_image.png`),
   //   rank_no_image:require(`${images}/rank_no_image.png`),
   //   warning_01_ic:require(`${images}/warning_01_ic.png`),
-  splash: require(`${images}/splash.jpg`),
-  ipa: require(`${images}/ic_ipa.png`),
-  raiDen: require(`${images}/raiden.png`),
-  qiqi: require(`${images}/qiqi.png`),
-  jean: require(`${images}/jean.png`),
-  kengqing: require(`${images}/kengqing.png`),
-  mona: require(`${images}/mona.png`),
+  // splash: require(`${images}/splash.jpg`),
+  // ipa: require(`${images}/ic_ipa.png`),
+  // raiDen: require(`${images}/raiden.png`),
+  // qiqi: require(`${images}/qiqi.png`),
+  // jean: require(`${images}/jean.png`),
+  // kengqing: require(`${images}/kengqing.png`),
+  // mona: require(`${images}/mona.png`),
 };
 
 export const JSON = {

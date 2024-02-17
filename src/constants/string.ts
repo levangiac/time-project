@@ -10,7 +10,7 @@ const strings = {
       getStarted: 'Get Started',
     },
     homeScreen: {
-      hello: 'Hello',
+      Alarms: 'Alarms',
     },
   },
   vn: {
@@ -21,7 +21,7 @@ const strings = {
       getStarted: 'Bắt đầu',
     },
     homeScreen: {
-      hello: 'Hello',
+      Alarms: 'Chuông báo',
     },
   },
 };
