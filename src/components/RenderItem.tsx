@@ -1,10 +1,20 @@
 import { StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import React from 'react';
-import Animated, { SharedValue, interpolate, useAnimatedStyle } from 'react-native-reanimated';
-import { OnboardingData } from '../data/data';
-import LottieView from 'lottie-react-native';
-import { HEIGHT_SCALE, WIDTH_SCALE } from '~constants/index';
-
+import Animated, {
+  SharedValue,
+  interpolate,
+  useAnimatedStyle,
+  Extrapolate,
+} from 'react-native-reanimated';
+import LottieView, { AnimationObject } from 'lottie-react-native';
+import { HEIGHT_SCALE } from '~constants/index';
+interface OnboardingData {
+  id: number;
+  animation: AnimationObject;
+  text: string;
+  textColor: string;
+  backgroundColor: string;
+}
 type Props = {
   index: number;
   x: SharedValue<number>;
@@ -18,7 +28,8 @@ const RenderItem = ({ index, x, item }: Props) => {
     const translateYAnimation = interpolate(
       x.value,
       [(index - 1) * SCREEN_WIDTH, index * SCREEN_WIDTH, (index + 1) * SCREEN_WIDTH],
-      [200, 0, -200]
+      [100, 0, -100],
+      Extrapolate.CLAMP
     );
 
     return {
@@ -30,7 +41,8 @@ const RenderItem = ({ index, x, item }: Props) => {
     const scale = interpolate(
       x.value,
       [(index - 1) * SCREEN_WIDTH, index * SCREEN_WIDTH, (index + 1) * SCREEN_WIDTH],
-      [1, 4, 4]
+      [1, 4, 4],
+      Extrapolate.CLAMP
     );
 
     return {

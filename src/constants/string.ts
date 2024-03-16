@@ -1,27 +1,27 @@
 import LocalizedStrings from 'react-native-localization';
-export const DEFAULT_LANGUAGE = 'en';
+export const DEFAULT_LANGUAGE = 'vn';
 
 const strings = {
-  en: {
-    onboarding: {
-      oneText: 'Hello. TimeMaster will remind you in the upcoming time.',
-      twoText: 'Important events.',
-      threeText: 'And more surprises ...',
-      getStarted: 'Get Started',
-    },
-    homeScreen: {
-      Alarms: 'Alarms',
-    },
-  },
   vn: {
     onboarding: {
-      oneText: 'Xin Chào. Thời gian tới TimeMaster sẽ đồng hành cùng bạn.',
-      twoText: 'Nhiều sự kiện quan trọng cần nhắc nhở trong ngày.',
-      threeText: 'Và rất nhiều bất ngờ ...',
+      oneText: 'Chào mừng bạn đến với chúng tôi',
+      twoText: 'Xếp đồ đạc vào vali !!!',
+      threeText: 'Và đi thôi nào',
       getStarted: 'Bắt đầu',
     },
     homeScreen: {
       Alarms: 'Chuông báo',
+    },
+  },
+  en: {
+    onboarding: {
+      oneText: 'Hello. Well come to Travel App',
+      twoText: 'Put your things in your suitcase',
+      threeText: `And let's go`,
+      getStarted: 'Get Started',
+    },
+    homeScreen: {
+      Alarms: 'Alarms',
     },
   },
 };

@@ -10,7 +10,7 @@ import { View, StyleSheet, Pressable, Text } from 'react-native';
 import React, { useState } from 'react';
 import { pStyle } from '~styles/styles';
 import { pColor } from '~styles/colors';
-import { WIDTH_SCALE } from '~constants/index';
+import { HEIGHT_SCALE, WIDTH_SCALE, width } from '~constants/index';
 
 const HEIGHT = 200;
 const DEFAULT_VELOCITY = 0.6;
@@ -114,7 +114,7 @@ export default function FrameCallbackDino() {
   return (
     <>
       <Text style={styles.highScore}>
-        {'High Score:'}
+        {'High Score: '}
         {score}
       </Text>
       <Pressable style={styles.container} onLayout={getDimensions} onPressIn={handleTap}>
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     textShadowColor: pColor.grayDisplay,
     paddingHorizontal: 15 * WIDTH_SCALE,
     paddingTop: 10 * WIDTH_SCALE,
+    fontSize: 25,
   },
   horse: {
     position: 'absolute',
@@ -149,7 +150,7 @@ const styles = StyleSheet.create({
   ground: {
     position: 'absolute',
     right: 0,
-    bottom: GROUND_LEVEL - 10,
+    bottom: width - GROUND_LEVEL - 80 * HEIGHT_SCALE,
     width: '100%',
     height: 2,
     backgroundColor: '#000',

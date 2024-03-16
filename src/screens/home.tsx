@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Image, FlatList, LayoutChangeEvent } from 'react-native';
 import React from 'react';
 import { RootStackScreenProps } from '~navigators/RootStack';
 import { pColor } from '~styles/colors';
@@ -10,10 +10,15 @@ import { useLocalizationContext } from '~theme/localization';
 import { pText } from '~styles/typography';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
+import { updateSeenOnBoarding } from '~utils/asyncStorage';
 
 const Home = (props: RootStackScreenProps<'Home'>) => {
   const { strings } = useLocalizationContext();
   const navigation = useNavigation();
+  const getX = (event: LayoutChangeEvent) => {
+    console.log('🚀 ~ getX ~ event:', event?.nativeEvent?.layout?.x, event?.nativeEvent?.layout?.y);
+  };
+  // updateSeenOnBoarding('false');
   return (
     <MainContainer style={styles.container}>
       <View style={styles.header}>
@@ -26,7 +31,7 @@ const Home = (props: RootStackScreenProps<'Home'>) => {
             <Image source={ICON.add_plus} style={styles.iconAddStyle} />
           </PTouchableOpacity>
           <PTouchableOpacity style={styles.iconSetting}>
-            <Image source={ICON.setting} style={styles.iconSettingStyle} />
+            <Image source={ICON.setting} style={styles.iconSettingStyle} onLayout={getX} />
           </PTouchableOpacity>
         </View>
       </View>

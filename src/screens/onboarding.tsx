@@ -5,7 +5,7 @@ import Animated, {
   useAnimatedScrollHandler,
   useAnimatedRef,
 } from 'react-native-reanimated';
-import data, { OnboardingData } from '~/data/data';
+
 import Pagination from '~components/Pagination';
 import CustomButton from '~components/CustomButton';
 import RenderItem from '~components/RenderItem';
@@ -14,12 +14,48 @@ import BootSplash from 'react-native-bootsplash';
 import { isSeenOnBoarding, updateSeenOnBoarding } from '~utils/asyncStorage';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
+import { useLocalizationContext } from '~theme/localization';
+import { AnimationObject } from 'lottie-react-native';
+import { JSON } from '~/assets/imagePath';
+import { pColor } from '~styles/colors';
+interface OnboardingData {
+  id: number;
+  animation: AnimationObject;
+  text: string;
+  textColor: string;
+  backgroundColor: string;
+}
 
 const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
   const navigation = useNavigation();
   const [showOnBoarding, setShowOnBoarding] = useState<string | undefined>();
+  const { strings, initializeAppLanguage } = useLocalizationContext();
+  const data: OnboardingData[] = [
+    {
+      id: 1,
+      animation: JSON.aAlarmClock,
+      text: strings.onboarding.oneText,
+      textColor: pColor.white,
+      backgroundColor: pColor.pinkChart,
+    },
+    {
+      id: 2,
+      animation: JSON.aNote,
+      text: strings.onboarding.twoText,
+      textColor: pColor.darkBlue,
+      backgroundColor: pColor.grayDisplay,
+    },
+    {
+      id: 3,
+      animation: JSON.aGift,
+      text: strings.onboarding.threeText,
+      textColor: pColor.orange2,
+      backgroundColor: pColor.greenNice,
+    },
+  ];
 
   useLayoutEffect(() => {
+    initializeAppLanguage();
     isSeenOnBoarding().then((isSeen) => {
       setShowOnBoarding(isSeen);
       if (isSeen !== 'false') {
@@ -27,9 +63,12 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
         BootSplash.hide({ fade: true });
       }
     });
+    // updateSeenOnBoarding('false');
   }, []);
   useEffect(() => {
-    BootSplash.hide({ fade: true });
+    setTimeout(() => {
+      BootSplash.hide({ fade: true });
+    }, 1000);
   }, []);
 
   const flatListRef = useAnimatedRef<FlatList<OnboardingData>>();

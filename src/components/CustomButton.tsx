@@ -9,13 +9,19 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import { StackActions, useNavigation } from '@react-navigation/native';
-import { OnboardingData } from '~/data/data';
 import { ICON } from '~/assets/imagePath';
 import { pColor } from '~styles/colors';
 import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
 import { useLocalizationContext } from '~theme/localization';
 import { updateSeenOnBoarding } from '~utils/asyncStorage';
-
+import { AnimationObject } from 'lottie-react-native';
+interface OnboardingData {
+  id: number;
+  animation: AnimationObject;
+  text: string;
+  textColor: string;
+  backgroundColor: string;
+}
 type Props = {
   dataLength: number;
   flatListIndex: SharedValue<number>;
@@ -30,7 +36,7 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
 
   const buttonAnimationStyle = useAnimatedStyle(() => {
     return {
-      width: flatListIndex.value === dataLength - 1 ? withSpring(140) : withSpring(60),
+      width: flatListIndex.value === dataLength - 1 ? withSpring(140) : withSpring(100),
       height: 60,
     };
   });

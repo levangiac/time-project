@@ -1,9 +1,15 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
 import { SharedValue } from 'react-native-reanimated';
-import { OnboardingData } from '~/data/data';
 import Dot from './Dot';
-
+import { AnimationObject } from 'lottie-react-native';
+interface OnboardingData {
+  id: number;
+  animation: AnimationObject;
+  text: string;
+  textColor: string;
+  backgroundColor: string;
+}
 type Props = {
   data: OnboardingData[];
   x: SharedValue<number>;
