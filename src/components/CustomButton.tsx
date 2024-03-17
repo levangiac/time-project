@@ -83,7 +83,7 @@ const CustomButton = ({ flatListRef, flatListIndex, dataLength, x }: Props) => {
           flatListRef.current?.scrollToIndex({ index: flatListIndex.value + 1 });
         } else {
           updateSeenOnBoarding('true');
-          navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
+          navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.BottomTab));
         }
       }}
     >

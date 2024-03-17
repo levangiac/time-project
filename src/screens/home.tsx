@@ -1,41 +1,50 @@
-import { View, Text, StyleSheet, Image, FlatList, LayoutChangeEvent } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  FlatList,
+  LayoutChangeEvent,
+  ScrollView,
+} from 'react-native';
 import React from 'react';
-import { RootStackScreenProps } from '~navigators/RootStack';
 import { pColor } from '~styles/colors';
 import { ICON } from '~/assets/imagePath';
-import { HEIGHT_SCALE, WIDTH_SCALE } from '~constants/index';
+import { HEIGHT_SCALE, WIDTH, WIDTH_SCALE } from '~constants/index';
 import PTouchableOpacity from '~components/PTouchableOpacity';
 import MainContainer from '~components/MainContainer';
 import { useLocalizationContext } from '~theme/localization';
 import { pText } from '~styles/typography';
 import { StackActions, useNavigation } from '@react-navigation/native';
 import { ROOT_ROUTE_KEY } from '~navigators/RouterKey';
+import { BottomTabScreenProps, HomeScreenProps } from '~navigators/BottomTab';
+import HomeHeader from '~components/HomeHeader';
+import data from '~/data/data';
+import HomeRenderItem from '~components/HomeRenderItem';
 import { updateSeenOnBoarding } from '~utils/asyncStorage';
 
-const Home = (props: RootStackScreenProps<'Home'>) => {
+const Home = (props: HomeScreenProps<'Home'>) => {
   const { strings } = useLocalizationContext();
   const navigation = useNavigation();
-  const getX = (event: LayoutChangeEvent) => {
-    console.log('🚀 ~ getX ~ event:', event?.nativeEvent?.layout?.x, event?.nativeEvent?.layout?.y);
-  };
-  // updateSeenOnBoarding('false');
+  updateSeenOnBoarding('false');
   return (
     <MainContainer style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.textHeader}>{strings.homeScreen.Alarms}</Text>
-        <View style={styles.buttons}>
-          <PTouchableOpacity
-            style={styles.iconAdd}
-            onPress={() => navigation.dispatch(StackActions.push(ROOT_ROUTE_KEY.Games))}
-          >
-            <Image source={ICON.add_plus} style={styles.iconAddStyle} />
-          </PTouchableOpacity>
-          <PTouchableOpacity style={styles.iconSetting}>
-            <Image source={ICON.setting} style={styles.iconSettingStyle} onLayout={getX} />
+      <HomeHeader />
+      <ScrollView
+        style={styles.scroll}
+        showsVerticalScrollIndicator={false}
+        nestedScrollEnabled={true}
+      >
+        <View style={styles.header}>
+          <Text style={styles.textLogin}>Đăng ký thành viên, hưởng nhiều ưu đãi</Text>
+          <PTouchableOpacity style={styles.buttonRegister}>
+            <Text style={styles.textButtonLogin}>Đăng nhập/Đăng ký</Text>
           </PTouchableOpacity>
         </View>
-      </View>
-      <FlatList data={[{}]} renderItem={({ item }) => <View></View>} style={styles.flatList} />
+        {data.map((item, index) => {
+          return <HomeRenderItem item={item} index={index} key={index} />;
+        })}
+      </ScrollView>
     </MainContainer>
   );
 };
@@ -44,46 +53,38 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: pColor.backgroundInput,
   },
-
   header: {
-    marginTop: 10 * HEIGHT_SCALE,
-    flexDirection: 'row',
     alignContent: 'center',
-    paddingLeft: 15 * WIDTH_SCALE,
-    justifyContent: 'space-between',
+    backgroundColor: pColor.blueChart,
+    justifyContent: 'center',
   },
-  textHeader: {
-    ...pText.BOLD_20,
-    fontWeight: '700',
-    alignSelf: 'center',
-    justifyContent: 'flex-start',
-    alignItems: 'flex-start',
+  scroll: {
+    flex: 1,
   },
   buttons: {
     flexDirection: 'row',
   },
-  iconAdd: {
-    padding: 12 * WIDTH_SCALE,
+  textLogin: {
+    textAlign: 'center',
+    color: pColor.white,
+    fontSize: 13,
+    fontWeight: '500',
+  },
+  buttonRegister: {
+    borderWidth: 1,
+    borderColor: pColor.white,
+    backgroundColor: pColor.blueChart,
+    marginVertical: 10,
+    width: WIDTH - 120,
     alignSelf: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 8,
+    paddingVertical: 8,
   },
-  iconAddStyle: {
-    width: 14 * WIDTH_SCALE,
-    height: 14 * WIDTH_SCALE,
-    tintColor: pColor.black,
-  },
-  iconSetting: {
-    padding: 12 * WIDTH_SCALE,
-    alignSelf: 'center',
-  },
-  iconSettingStyle: {
-    width: 16 * WIDTH_SCALE,
-    height: 16 * WIDTH_SCALE,
-    tintColor: pColor.black,
-  },
-  flatList: {
-    flex: 1,
-    borderTopLeftRadius: 20 * WIDTH_SCALE,
-    borderTopRightRadius: 20 * WIDTH_SCALE,
+  textButtonLogin: {
+    color: pColor.white,
+    fontWeight: '700',
   },
 });
 export default Home;

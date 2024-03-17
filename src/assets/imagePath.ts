@@ -30,7 +30,7 @@ export const ICON = {
   //   cup_ranking:require(`${icons}/cup_ranking.png`),
   //   cup_award:require(`${icons}/cup_award.png`),
   //   cup_award_grey:require(`${icons}/cup_award_grey.png`),
-  //   search: require(`${icons}/search.png`),
+  search: require(`${icons}/search.png`),
   //   arrow_down: require(`${icons}/arrow_down.png`),
   //   chevron_down: require(`${icons}/down_ic.png`),
   //   evil:require(`${icons}/142.png`),
@@ -40,13 +40,13 @@ export const ICON = {
   //   chevron_up:require(`${icons}/chevron_up.png`),
   rank: require(`${icons}/rank.png`),
   rank_2: require(`${icons}/rank_2.png`),
-  //   word:require(`${icons}/word.png`),
+  word: require(`${icons}/word.png`),
   event: require(`${icons}/event.png`),
   event_2: require(`${icons}/event_2.png`),
   volume: require(`${icons}/volume.png`),
   setting: require(`${icons}/setting.png`),
   add_plus: require(`${icons}/add.png`),
-  //   notice:require(`${icons}/notice.png`),
+  notice: require(`${icons}/notice.png`),
   //   buy_icon: require(`${icons}/buyicon.jpg`),
   //   clear_icon: require(`${icons}/clear_icon.png`),
   //   timer:require(`${icons}/timer.png`),
@@ -59,7 +59,7 @@ export const ICON = {
   //   icon_tick_on: require(`${icons}/tick_on.png`),
   //   icon_tick_off:require(`${icons}/tick_off.png`),
   //   triangle:require(`${icons}/triangle.png`),
-  //   word_bg:require(`${icons}/word_bg.png`),
+  word_bg: require(`${icons}/word_bg.png`),
   //   icon_splash: require(`${icons}/splash_b.png`)
 };
 export type ICON_PARAMS = typeof ICON;

@@ -1,16 +1,13 @@
 import { createNativeStackNavigator, NativeStackScreenProps } from '@react-navigation/native-stack';
-
 import React from 'react';
 import { ROOT_ROUTE_KEY } from './RouterKey';
 import OnboardingScreen from '~screens/onboarding';
-import Home from '~screens/home';
-import FrameCallbackDino from '~screens/games';
-import Games from '~screens/games';
+import BottomTab, { BottomTabScreensParams } from './BottomTab';
+import { NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackScreensParams = {
   OnboardingScreen: undefined;
-  Home: undefined;
-  Games: undefined;
+  BottomTab: undefined | NavigatorScreenParams<BottomTabScreensParams>;
   SignIn: undefined;
   SignUp: { mobile?: string };
 };
@@ -30,8 +27,7 @@ const RootStack = () => (
     }}
   >
     <Screen name={ROOT_ROUTE_KEY.OnboardingScreen} component={OnboardingScreen} />
-    <Screen name={ROOT_ROUTE_KEY.Home} component={Home} />
-    <Screen name={ROOT_ROUTE_KEY.Games} component={Games} />
+    <Screen name={ROOT_ROUTE_KEY.BottomTab} component={BottomTab} />
   </Navigator>
 );
 

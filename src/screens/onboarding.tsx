@@ -59,7 +59,7 @@ const OnboardingScreen = (props: RootStackScreenProps<'OnboardingScreen'>) => {
     isSeenOnBoarding().then((isSeen) => {
       setShowOnBoarding(isSeen);
       if (isSeen !== 'false') {
-        navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.Home));
+        navigation.dispatch(StackActions.replace(ROOT_ROUTE_KEY.BottomTab));
         BootSplash.hide({ fade: true });
       }
     });
