@@ -30,8 +30,8 @@ export type BottomTabScreensParams = {
   Games: undefined;
 };
 export type HomeScreensParams = {
-  Home?: undefined | { item?: Data };
-  Detail?: undefined | { item?: Data };
+  Home: undefined | { item: Data };
+  Detail: undefined | { item: Data };
 };
 
 export type HomeScreens = keyof HomeScreensParams;
@@ -68,9 +68,9 @@ const BottomTab = (props: RootStackScreenProps<'BottomTab'>) => {
         source={icon}
         resizeMode="contain"
         style={{
-          tintColor: focused ? pColor.purple : pColor.lightOrangeChart,
-          width: widthScale(20),
-          height: widthScale(20),
+          tintColor: focused ? pColor.lightBlueChart : pColor.grayDisable,
+          width: title == 'HomeStack' ? widthScale(28) : widthScale(20),
+          height: title == 'HomeStack' ? widthScale(28) : widthScale(20),
           marginTop: widthScale(5),
         }}
       />
@@ -86,17 +86,17 @@ const BottomTab = (props: RootStackScreenProps<'BottomTab'>) => {
         name={ROOT_ROUTE_KEY.HomeStack}
         component={HomeStack}
         options={{
-          tabBarIcon: ({ focused }) => renderIcon(focused ? ICON.home : ICON.home_2, focused),
+          tabBarIcon: ({ focused }) => renderIcon(ICON.home_focus, focused, 'HomeStack'),
           title: 'HomeStack',
           tabBarLabel: ({ focused }) => (
             <Text
               style={{
                 ...(focused ? myText.H12_BOLD : myText.H12),
-                color: focused ? pColor.purple : pColor.grayDisplay,
+                color: focused ? pColor.lightBlue : pColor.disableText,
                 paddingBottom: widthScale(5),
               }}
             >
-              Home
+              Trang chủ
             </Text>
           ),
         }}
@@ -106,17 +106,17 @@ const BottomTab = (props: RootStackScreenProps<'BottomTab'>) => {
         name={ROOT_ROUTE_KEY.Games}
         component={Games}
         options={{
-          tabBarIcon: ({ focused }) => renderIcon(focused ? ICON.home : ICON.home_2, focused),
+          tabBarIcon: ({ focused }) => renderIcon(ICON.games, focused),
           title: 'Games',
           tabBarLabel: ({ focused }) => (
             <Text
               style={{
                 ...(focused ? myText.H12_BOLD : myText.H12),
-                color: focused ? pColor.purple : pColor.grayDisplay,
+                color: focused ? pColor.lightBlue : pColor.disableText,
                 paddingBottom: widthScale(5),
               }}
             >
-              Games
+              Trò chơi
             </Text>
           ),
         }}
@@ -125,17 +125,17 @@ const BottomTab = (props: RootStackScreenProps<'BottomTab'>) => {
         name={ROOT_ROUTE_KEY.Setting}
         component={Setting}
         options={{
-          tabBarIcon: ({ focused }) => renderIcon(focused ? ICON.setting : ICON.setting, focused),
+          tabBarIcon: ({ focused }) => renderIcon(ICON.user_2, focused),
           title: 'Setting',
           tabBarLabel: ({ focused }) => (
             <Text
               style={{
                 ...(focused ? myText.H12_BOLD : myText.H12),
-                color: focused ? pColor.purple : pColor.grayDisplay,
+                color: focused ? pColor.lightBlue : pColor.disableText,
                 paddingBottom: widthScale(5),
               }}
             >
-              Setting
+              Tài khoản
             </Text>
           ),
         }}

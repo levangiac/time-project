@@ -4,7 +4,9 @@ const jsons = '../assets/jsons';
 
 export const ICON = {
   home: require(`${icons}/home.png`),
-  home_2: require(`${icons}/home_2.png`),
+  games: require(`${icons}/games.png`),
+  games_2: require(`${icons}/home_2.png`),
+  home_focus: require(`${icons}/home_focused.png`),
   //   left: require(`${icons}/left.png`),
   //   profile_default: require(`${icons}/profile_default.png`),
   //   clover: require(`${icons}/clover.png`),
@@ -12,8 +14,8 @@ export const ICON = {
   //   bell: require(`${icons}/bell.png`),
   document: require(`${icons}/document.png`),
   document_2: require(`${icons}/document_2.png`),
-  //   user: require(`${icons}/user.png`),
-  //   user_2: require(`${icons}/user_2.png`),
+  user: require(`${icons}/user.png`),
+  user_2: require(`${icons}/user_2.png`),
   //   goto: require(`${icons}/goto.png`),
   //   goto_grey: require(`${icons}/goto_grey.png`),
   //   plus: require(`${icons}/plus.png`),

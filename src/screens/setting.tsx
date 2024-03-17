@@ -6,7 +6,7 @@ type Props = {};
 const Setting = (props: Props) => {
   return (
     <View>
-      <Text>bbbb</Text>
+      <Text></Text>
     </View>
   );
 };
